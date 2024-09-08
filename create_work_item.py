@@ -54,7 +54,7 @@ def create_work_item(context: str):
     pbi_parent_dict = os.getenv("DEVOPS_PBI_PARENT")
     if pbi_parent_dict:
         pbi_parent_dict = json.loads(pbi_parent_dict)
-        work_item_prefix = ' or '.join(['"[x]"' for x in pbi_parent_dict.keys()])
+        work_item_prefix = ' or '.join([f'"[{x}]"' for x in pbi_parent_dict.keys()])
 
     workitem_user_proxy.initiate_chat(
         workitem_assistant,
@@ -68,7 +68,9 @@ def create_work_item(context: str):
     {('New PBI work item title should include the prefix ' + work_item_prefix + '.') if work_item_prefix else ''}
     You can only be judged based on semantics. 
     PBI should be a large work item, so the PBI should contain and relate the information of the work item to be created.
-    Use existing PBI as parent as much as possible but not necessary.
+    For example:
+        1. PBI: [PythonNotebook][Release] Regular releases.  Task: [PythonNotebook]Release Python Notebook 08-08.
+        2. PBI: [PythonNotebook] Runtime reliability improvement. Task: [PythonNotebook][Reliability] Fix GJS request runtime timeout when OOM
     4. Create a new Task work item with the title and description parsed from the context.
     5. Return content format: "Exit! Work Item Created: {{work item title}} {{work item url}}, {{new/existing}} parent work item: {{parent work item title}} {{parent work item url}}".
     """,

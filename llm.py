@@ -15,7 +15,7 @@ llm_config = {
     "cache_seed": seed,
     "config_list": [
         {
-            "model": os.environ["AZURE_OPENAI_DEPLOYMENT_NAME_4O"],
+            "model": os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"],
             "api_type": "azure",
             "base_url": os.environ["AZURE_OPENAI_ENDPOINT"],
             "api_version": os.environ["AZURE_OPENAI_API_VERSION"],
