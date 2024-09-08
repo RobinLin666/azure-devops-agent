@@ -63,12 +63,10 @@ def create_work_item(context: str):
 
     1. Parse the context: {context} to get the work item title and description.
     2. Get All PBI Work Items Information
-    3. According to the description and all the PBI queried, if there is a work item that can be used as a parent, 
-    use this PBI work item as a parent. If not, create a new PBI work item as a parent.
+    3. According to the description and all the PBI queried, if there is a work item that can be used as a parent, use this PBI work item as a parent.
+    This PBI should contain and be related to the information of the work item to be created. If not, create a new PBI work item as a parent.
     {('New PBI work item title should include the prefix ' + work_item_prefix + '.') if work_item_prefix else ''}
-    You can only be judged based on semantics. 
-    PBI should be a large work item, so the PBI should contain and relate the information of the work item to be created.
-    For example:
+    You should be judged based on semantics. Here is the PBI and Task examples to show the relationship between them:
         1. PBI: [PythonNotebook][Release] Regular releases.  Task: [PythonNotebook]Release Python Notebook 08-08.
         2. PBI: [PythonNotebook] Runtime reliability improvement. Task: [PythonNotebook][Reliability] Fix GJS request runtime timeout when OOM
     4. Create a new Task work item with the title and description parsed from the context.
